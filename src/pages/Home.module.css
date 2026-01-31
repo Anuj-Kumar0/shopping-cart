@@ -1,41 +1,159 @@
 .container {
-    min-height: 80vh;
-    display: flex;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f1faee, #e9f5f2);
+  overflow: hidden;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1100px;
+  width: 100%;
+}
+
+.content {
+  max-width: 520px;
+  animation: slideIn 0.8s ease forwards;
+}
+
+.title {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+  color: #1d3557;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #457b9d;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.button {
+  text-decoration: none;
+  background: linear-gradient(135deg, #e63946, #ff6b6b);
+  color: white;
+  padding: 1rem 2.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 15px 30px rgba(230, 57, 70, 0.35);
+}
+
+.button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 40px rgba(230, 57, 70, 0.45);
+}
+
+
+.imageWrapper {
+  flex: 1;
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: float 4s ease-in-out infinite;
+}
+
+.imagePlaceholder {
+  width: min(90%, 380px);
+  aspect-ratio: 1 / 1;
+  border-radius: 24px;
+  background-image: url("/shopping.jpg");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.18);
+  position: relative;
+  overflow: hidden;
+}
+
+.imagePlaceholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes shine {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 3rem;
     text-align: center;
-    padding: 2rem;
-    background: #f1faee;
   }
-  
+
+  .content {
+    max-width: 100%;
+  }
+
   .title {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: #1d3557;
+    font-size: 2.6rem;
   }
-  
+
   .subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: #457b9d;
+    font-size: 1.1rem;
   }
-  
-  .actions {
-    margin-top: 1rem;
+}
+
+@media (max-width: 500px) {
+  .imagePlaceholder {
+    width: 100%;
   }
-  
-  .button {
-    text-decoration: none;
-    background-color: #e63946;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
+}
+
+@media (min-width: 1200px) {
+  .imagePlaceholder {
+    width: 420px;
   }
-  
-  .button:hover {
-    background-color: #d62828;
+}
+
+@media (max-width: 900px) {
+  .imageWrapper {
+    min-height: 260px;
   }
-  
+}
+
