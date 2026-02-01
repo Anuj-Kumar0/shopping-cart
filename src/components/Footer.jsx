@@ -20,7 +20,7 @@ export default function Footer() {
             </div>
 
             <div className={styles.bottom}>
-                <p>© {new Date().getFullYear()} MyStore. All rights reserved.</p>
+                <p>© {new Date().getFullYear()} ShoppiBuy. All rights reserved.</p>
             </div>
         </footer>
     );
