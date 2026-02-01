@@ -20,6 +20,7 @@ export default function useProducts() {
 
       const productDetails = await response.json();
       setProducts(productDetails);
+      console.log("Api called");
     } catch (err) {
       setError(err.message);
     } finally {

@@ -1,8 +1,8 @@
-import useProducts from "../hooks/products";
+import { useOutletContext } from "react-router";
 import styles from "./Shop.module.css";
 
 export default function Shop() {
-    const { products, loading, error } = useProducts();
+    const { products, loading, error } = useOutletContext();
 
     if (loading)
         return (
