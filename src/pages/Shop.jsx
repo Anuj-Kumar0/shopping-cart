@@ -3,7 +3,7 @@ import styles from "./Shop.module.css";
 import { useState } from "react";
 
 export default function Shop() {
-    const { products, loading, error } = useOutletContext();
+    const { products, loading, error, setCartItems } = useOutletContext();
     const [qty, setQty] = useState({});
 
     if (loading)
@@ -14,6 +14,32 @@ export default function Shop() {
             </div>
         );
     if (error) return <p className={styles.status}>{error}</p>;
+
+    const handleAddToCart = (product) => {
+        const quantity = qty[product.id] || 1;
+
+        setCartItems((prev) => {
+            const existingItem = prev.find(
+                (item) => item.id === product.id
+            );
+
+            if (existingItem) {
+                // To restrict duplicate items
+                return prev.map((item) =>
+                    item.id === product.id
+                        ? { ...item, quantity: item.quantity + quantity }
+                        : item
+                );
+            }
+
+            // Add new item
+            return [
+                ...prev,
+                { ...product, quantity },
+            ];
+        });
+    };
+
 
     return (
         <div className={styles.cards}>
@@ -51,7 +77,7 @@ export default function Shop() {
                             onClick={() =>
                                 setQty({
                                     ...qty,
-                                    [id]: (qty[id]) + 1,
+                                    [id]: (qty[id] || 1) + 1,
                                 })
                             }
                         >
@@ -59,7 +85,15 @@ export default function Shop() {
                         </button>
                     </div>
 
-                    <button className={styles.button}>Add to cart</button>
+                    <button
+                        className={styles.button}
+                        onClick={() =>
+                            handleAddToCart({ id, title, price, image })
+                        }
+                    >
+                        Add to cart
+                    </button>
+
                 </div>
             ))}
         </div>
