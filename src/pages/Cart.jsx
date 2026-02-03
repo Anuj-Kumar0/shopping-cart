@@ -1,9 +1,10 @@
-import { useOutletContext } from "react-router";
+import { useOutletContext, useNavigate } from "react-router";
 import styles from "./Cart.module.css";
 import { BaggageClaim } from 'lucide-react';
 
 export default function Cart() {
     const { cartItems, setCartItems } = useOutletContext();
+    const navigate = useNavigate();
 
     const updateQty = (id, changeQty) => {
         setCartItems((prev) =>
@@ -71,7 +72,13 @@ export default function Cart() {
                 <strong>${total}</strong>
             </div>
 
-            <button className={styles.checkout}>Checkout</button>
+
+            <button
+                className={styles.checkout}
+                onClick={() => navigate("/checkout")}
+            >
+                Checkout
+            </button>
         </div>
     );
 }
