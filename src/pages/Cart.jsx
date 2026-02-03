@@ -69,7 +69,7 @@ export default function Cart() {
 
             <div className={styles.summary}>
                 <span>Total</span>
-                <strong>${total.toRound(2)}</strong>
+                <strong>${total.toFixed(2)}</strong>
             </div>
 
 
