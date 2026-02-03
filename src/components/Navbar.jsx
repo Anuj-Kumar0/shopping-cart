@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router";
 import styles from "./Navbar.module.css";
 
-export default function Navbar() {
+export default function Navbar({ totalItems }) {
     return (
         <header className={styles.header}>
             <nav className={styles.nav}>
@@ -34,7 +34,7 @@ export default function Navbar() {
                             `${styles.link} ${isActive ? styles.active : ""}`
                         }
                     >
-                        Cart
+                        Cart {totalItems > 0 && `(${totalItems})`}
                     </NavLink>
                 </div>
             </nav>
